@@ -32,10 +32,10 @@ jobs:
           dotnet-version: 5.0.100
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore Plant-Project-Backend
 
       - name: Build
-        run: dotnet build
+        run: dotnet build Plant-Project-Backend
 
       - name: Execute unit tests
-        run: dotnet test
+        run: dotnet test Plant-Project-Backend
