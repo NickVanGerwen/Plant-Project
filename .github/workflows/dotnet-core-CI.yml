@@ -16,7 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./back-end
+        working-directory: ./back-end/Plant-Project-Backend
     strategy:
       matrix:
         configuration: [Debug, Release]
