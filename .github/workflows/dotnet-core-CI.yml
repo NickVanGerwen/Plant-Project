@@ -12,6 +12,10 @@ on:
 
 jobs:
   build:
+   defaults:
+      run:
+        shell: bash
+        working-directory: ./back-end
     strategy:
       matrix:
         configuration: [Debug, Release]
@@ -19,8 +23,8 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: Plant-Project-Backend.sln # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: Plant-Project-Backend.Plant-Project-Tests.csproj # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+      Solution_Name: Plant-Project-Backend.sln
+      Test_Project_Path: Plant-Project-Backend.Plant-Project-Tests.csproj
 
     steps:
       - name: Checkout
@@ -32,10 +36,10 @@ jobs:
           dotnet-version: 5.0.100
 
       - name: Install dependencies
-        run: dotnet restore Plant-Project-Backend
+        run: dotnet restore
 
       - name: Build
-        run: dotnet build Plant-Project-Backend
+        run: dotnet build
 
       - name: Execute unit tests
-        run: dotnet test Plant-Project-Backend
+        run: dotnet test
