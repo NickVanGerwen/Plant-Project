@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plant-Project-Backend", "Plant-Project-Backend\Plant-Project-Backend.csproj", "{C3D1A408-05BA-47CC-ADCC-B254C042C4D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plant-Project-Backend", "Plant-Project-Backend\Plant-Project-Backend.csproj", "{C3D1A408-05BA-47CC-ADCC-B254C042C4D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plant-Project-Tests", "Plant-Project-Tests\Plant-Project-Tests.csproj", "{B1FC7C08-11AA-4B49-893A-43C43CFBBF2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plant-Project-Tests", "Plant-Project-Tests\Plant-Project-Tests.csproj", "{B1FC7C08-11AA-4B49-893A-43C43CFBBF2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{6EF2674F-A9BA-4AA2-89D9-4C1A02D5953C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{B654A2B9-D8A2-4E05-B041-86A019735CFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicInterfaces", "LogicInterfaces\LogicInterfaces.csproj", "{F2B1010A-A353-417E-9B19-6BE347EF4E96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{B1FC7C08-11AA-4B49-893A-43C43CFBBF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1FC7C08-11AA-4B49-893A-43C43CFBBF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1FC7C08-11AA-4B49-893A-43C43CFBBF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF2674F-A9BA-4AA2-89D9-4C1A02D5953C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF2674F-A9BA-4AA2-89D9-4C1A02D5953C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF2674F-A9BA-4AA2-89D9-4C1A02D5953C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF2674F-A9BA-4AA2-89D9-4C1A02D5953C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B654A2B9-D8A2-4E05-B041-86A019735CFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B654A2B9-D8A2-4E05-B041-86A019735CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B654A2B9-D8A2-4E05-B041-86A019735CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B654A2B9-D8A2-4E05-B041-86A019735CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2B1010A-A353-417E-9B19-6BE347EF4E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2B1010A-A353-417E-9B19-6BE347EF4E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2B1010A-A353-417E-9B19-6BE347EF4E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2B1010A-A353-417E-9B19-6BE347EF4E96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

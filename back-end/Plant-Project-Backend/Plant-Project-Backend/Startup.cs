@@ -1,3 +1,5 @@
+using Logic;
+using LogicInterfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +19,8 @@ namespace Plant_Project_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddScoped<IUserMaintainer, UserMaintainer>
+            services.AddScoped<IUser, User>();
+
             services.AddControllers();
         }
 
