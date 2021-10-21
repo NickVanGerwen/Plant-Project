@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Plant_Project_Backend
 {
     public class Startup
@@ -22,6 +23,7 @@ namespace Plant_Project_Backend
             services.AddScoped<IUser, User>();
 
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +33,9 @@ namespace Plant_Project_Backend
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
@@ -39,7 +44,6 @@ namespace Plant_Project_Backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-
             });
         }
     }
