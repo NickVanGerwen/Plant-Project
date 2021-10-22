@@ -26,7 +26,7 @@ namespace Plant_Project_Backend.Controllers
             List<GroupModel> groups = new List<GroupModel>();
             foreach(GroupDTO group in user.GetGroups())
             {
-                groups.Add(new GroupModel() { Name = group.name, Id = 1, Password = group.password });
+                groups.Add(new GroupModel() { Name = group.name, Id = group.id, Password = group.password });
             }
             return groups;
         }
