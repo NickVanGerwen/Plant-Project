@@ -1,0 +1,48 @@
+version: '3.4'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: PlantDB
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./database/data:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_DATABASE: 'PlantDB'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - "3307:3306"
+    networks:
+      - plantnetwork
+
+  Plant-PHPMA:
+    image: phpmyadmin/phpmyadmin
+    container_name: PlantPhpmyadmindb
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - plantnetwork
+
+  Plant-Backend:
+    image: plant
+    build:
+      context: back-end/Plant-Project-Backend
+      dockerfile: Plant-Project-Backend/Dockerfile
+
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+    networks:
+      - plantnetwork
+
+networks:
+  plantnetwork:
+    driver: bridge

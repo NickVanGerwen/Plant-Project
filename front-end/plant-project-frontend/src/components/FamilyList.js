@@ -11,8 +11,12 @@ function FamilyList() {
     const [families, setfamilies] = useState([])
 
     async function getUserFamilies() {
+        console.log("yoooooooo");
+
         try {
             const apirequest = await axios.get(Variables.GetGroupsByUserUrl);
+
+            console.log(apirequest.data);
             return apirequest.data;
         } catch (error) {
             console.error(error);

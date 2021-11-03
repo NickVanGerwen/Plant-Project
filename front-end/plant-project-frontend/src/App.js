@@ -9,9 +9,9 @@ function App() {
   // }
 
   return (
-    <FamilyList>
+    <FamilyList />
 
-    </FamilyList>
+
     // <Button onClick={onClick} text='hello' />
   );
 }

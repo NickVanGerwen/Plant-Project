@@ -1,3 +1,3 @@
 export const Variables = {
-    GetGroupsByUserUrl: "https://localhost:44301/Group?userId=1",
+    GetGroupsByUserUrl: "http://localhost:5000/Group?userId=1",
 };
