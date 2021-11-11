@@ -1,19 +1,16 @@
 version: '3.4'
 
 services:
-  db:
-    image: mysql:latest
+  sql-server-db:
     container_name: PlantDB
-    command: --default-authentication-plugin=mysql_native_password
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "Rootbutbetter1"
+      ACCEPT_EULA: "Y"
     volumes:
       - ./database/data:/docker-entrypoint-initdb.d
-    environment:
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'root'
-      MYSQL_DATABASE: 'PlantDB'
-      MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - "3307:3306"
+      - "1433:1433"
     networks:
       - plantnetwork
 
@@ -21,9 +18,9 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: PlantPhpmyadmindb
     links:
-      - db
+      - sql-server-db
     environment:
-      PMA_HOST: db
+      PMA_HOST: sql-server-db
     restart: always
     ports:
       - 8080:80

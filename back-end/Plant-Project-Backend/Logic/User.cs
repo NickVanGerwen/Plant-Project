@@ -1,23 +1,13 @@
-﻿using DTOs;
-using LogicInterfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Logic
 {
-    public class User : IUser
+    public class User
     {
-        List<GroupDTO> groups = new List<GroupDTO>();
-        public User()
-        {
-            groups.Add(new GroupDTO() { name = "group 1", password = "123", id = 1 });
-            groups.Add(new GroupDTO() { name = "group 2", password = "123", id = 2 });
-            groups.Add(new GroupDTO() { name = "group 3", password = "123", id = 3});
-            groups.Add(new GroupDTO() { name = "group 4", password = "123", id = 4 });
-        }
-        public List<GroupDTO> GetGroups()
-        {
-            return groups;
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public virtual List<Group> Groups { get; set; }
     }
 }
