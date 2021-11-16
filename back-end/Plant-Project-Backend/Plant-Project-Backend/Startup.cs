@@ -50,6 +50,8 @@ namespace Plant_Project_Backend
 
             app.UseRouting();
 
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
