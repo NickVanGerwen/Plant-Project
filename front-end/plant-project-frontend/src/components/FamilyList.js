@@ -17,10 +17,7 @@ function FamilyList() {
             console.log(apirequest.data);
             return apirequest.data;
         } catch (error) {
-            console.log("eee");
             console.error(error);
-            console.log("eee");
-
         }
     }
 
@@ -38,7 +35,7 @@ function FamilyList() {
         <div>
             <h1>Families:</h1>
 
-            <table className="table">
+            <table>
                 <thead>
                     <tr>
                         <th>name</th>
