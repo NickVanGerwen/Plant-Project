@@ -19,10 +19,12 @@ namespace Plant_Project_Backend.Controllers
             context = plantDBContext;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("UserGroups")]
         public List<Group> GetGroupsByUser(int userid)
         {
+            //return new List<Group>() { new Group() { Id = 1, Name = "aaa", Password = "bruh" } };
+
             return context.ReadGroups(userid);
         }
     }

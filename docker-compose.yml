@@ -1,32 +1,6 @@
 version: '3.4'
 
 services:
-  sql-server-db:
-    container_name: PlantDB
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    environment:
-      SA_PASSWORD: "Rootbutbetter1"
-      ACCEPT_EULA: "Y"
-    volumes:
-      - ./database/data:/docker-entrypoint-initdb.d
-    ports:
-      - "1433:1433"
-    networks:
-      - plantnetwork
-
-  Plant-PHPMA:
-    image: phpmyadmin/phpmyadmin
-    container_name: PlantPhpmyadmindb
-    links:
-      - sql-server-db
-    environment:
-      PMA_HOST: sql-server-db
-    restart: always
-    ports:
-      - 8080:80
-    networks:
-      - plantnetwork
-
   Plant-Backend:
     image: plant
     build:
@@ -37,9 +11,3 @@ services:
       - ASPNETCORE_URLS=http://+:5000
     ports:
       - "5000:5000"
-    networks:
-      - plantnetwork
-
-networks:
-  plantnetwork:
-    driver: bridge
