@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Group from '../models/Group';
-import GroupAPI from "../api/GroupAPI";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import axios from "axios";
 
 import { Variables } from './APIURLs';
@@ -35,7 +35,7 @@ function FamilyList() {
         <div>
             <h1>Families:</h1>
 
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>name</th>
