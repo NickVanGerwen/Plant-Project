@@ -23,8 +23,6 @@ namespace Plant_Project_Backend
             Configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PlantDBContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
@@ -35,7 +33,6 @@ namespace Plant_Project_Backend
             services.AddSwaggerGen();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -44,6 +41,7 @@ namespace Plant_Project_Backend
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseSwagger();
 
             app.UseSwaggerUI();

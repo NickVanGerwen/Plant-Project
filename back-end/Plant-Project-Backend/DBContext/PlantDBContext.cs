@@ -15,11 +15,61 @@ namespace DBContext
         public PlantDBContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
 
-        public List<Group> GetGroups()
+        //group
+
+        public void CreateGroup(Group group)
         {
-            Groups.Add(new Group() { Name = "group 4", Password = "123"});
-            SaveChanges();        
-                return Groups.ToList();
+            try
+            {
+                Groups.Add(group);
+                SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<Group> ReadGroups(int userid)
+        {
+            try
+            {
+                User user = Users.Include("Groups").Where(u => u.Id == userid).FirstOrDefault();
+                foreach (Group group in user.Groups)
+                {
+                    group.Users = null;
+                }
+                return user.Groups;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void CreateUser(User user)
+        {
+            try
+            {
+                Users.Add(user);
+                SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public User ReadUser(int userid)
+        {
+            try
+            {
+                return Users.Include("Groups").Where(x => x.Id == userid).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

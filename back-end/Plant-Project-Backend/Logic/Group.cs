@@ -12,6 +12,5 @@ namespace Logic
         public string Name { get; set; }
         public string Password{ get; set; }
         public virtual List<User> Users{ get; set; }
-
     }
 }
