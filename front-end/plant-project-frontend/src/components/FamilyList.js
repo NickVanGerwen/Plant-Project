@@ -30,26 +30,29 @@ function FamilyList() {
 
     return (
         <div>
-            <h1>Families:</h1>
+            <h1>Families</h1>
             {families != null ?
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>name</th>
-                            <th>password</th>
-                            <th>id</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {families.map(fam => (
+                <div>
+                    <table className="table">
+                        <thead>
                             <tr>
-                                <th>{fam.name}</th>
-                                <th>{fam.password}</th>
-                                <th>{fam.id}</th>
+                                <th>name</th>
+                                <th>password</th>
+                                <th>id</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {families.map(fam => (
+                                <tr>
+                                    <th>{fam.name}</th>
+                                    <th>{fam.password}</th>
+                                    <th>{fam.id}</th>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                </div>
                 : <a>geen families gevonden.</a>
             }
 
