@@ -31,23 +31,9 @@ function FamilyList() {
     return (
         <div>
             <h1>Families:</h1>
-<<<<<<< Updated upstream
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>name</th>
-                        <th>password</th>
-                        <th>id</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {families.map(fam => (
-=======
             {families != null ?
                 <table className="table">
                     <thead>
->>>>>>> Stashed changes
                         <tr>
                             <th>name</th>
                             <th>password</th>
