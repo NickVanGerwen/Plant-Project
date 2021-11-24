@@ -13,8 +13,6 @@ function FamilyList() {
     async function getUserFamilies() {
         try {
             const apirequest = await axios.get(Variables.GetGroupsByUserUrl);
-
-            console.log(apirequest.data);
             return apirequest.data;
         } catch (error) {
             console.error(error);
@@ -23,7 +21,6 @@ function FamilyList() {
 
     async function GetFamilies() {
         setfamilies(await getUserFamilies());
-        console.log("a");
         return;
     }
 
@@ -34,6 +31,7 @@ function FamilyList() {
     return (
         <div>
             <h1>Families:</h1>
+<<<<<<< Updated upstream
 
             <table class="table">
                 <thead>
@@ -45,14 +43,29 @@ function FamilyList() {
                 </thead>
                 <tbody>
                     {families.map(fam => (
+=======
+            {families != null ?
+                <table className="table">
+                    <thead>
+>>>>>>> Stashed changes
                         <tr>
-                            <th>{fam.name}</th>
-                            <th>{fam.password}</th>
-                            <th>{fam.id}</th>
+                            <th>name</th>
+                            <th>password</th>
+                            <th>id</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {families.map(fam => (
+                            <tr>
+                                <th>{fam.name}</th>
+                                <th>{fam.password}</th>
+                                <th>{fam.id}</th>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                : <a>geen families gevonden.</a>
+            }
 
         </div>
     )
