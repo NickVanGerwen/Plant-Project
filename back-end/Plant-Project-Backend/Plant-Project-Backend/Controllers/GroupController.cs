@@ -14,6 +14,8 @@ namespace Plant_Project_Backend.Controllers
     public class GroupController : ControllerBase
     {
         PlantDBContext context;
+
+
         public GroupController(PlantDBContext plantDBContext)
         {
             context = plantDBContext;
@@ -23,7 +25,37 @@ namespace Plant_Project_Backend.Controllers
         [Route("UserGroups")]
         public List<Group> GetGroupsByUser(int userid)
         {
-            return context.ReadGroups(userid);
+            return context.ReadUserGroups(userid);
+        }
+
+        [HttpPost]
+        [Route("NewGroup")]
+        public int CreateGroup(int userid, string groupName, string groupPassword)
+        {
+            try
+            {
+                context.CreateGroup(userid, groupName, groupPassword);
+                return 201;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("AddUserToGroup")]
+        public int CreateGroup(int userid, int groupId)
+        {
+            try
+            {
+                context.AddUserToGroup(userid, groupId);
+                return 200;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

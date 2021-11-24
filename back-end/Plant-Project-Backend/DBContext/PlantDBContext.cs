@@ -17,11 +17,20 @@ namespace DBContext
 
         //group
 
-        public void CreateGroup(Group group)
+        public void CreateGroup(int userId, string groupName, string groupPassword)
         {
             try
             {
-                Groups.Add(group);
+                Groups.Add(
+                    new Group()
+                    {
+                        Name = groupName,
+                        Password = groupPassword,
+                        Users = new List<User>()
+                        {
+                            ReadUser(userId)
+                        }
+                    });
                 SaveChanges();
             }
             catch (Exception)
@@ -30,7 +39,7 @@ namespace DBContext
             }
         }
 
-        public List<Group> ReadGroups(int userid)
+        public List<Group> ReadUserGroups(int userid)
         {
             try
             {
@@ -46,6 +55,22 @@ namespace DBContext
                 throw;
             }
         }
+
+        public void AddUserToGroup(int userId, int groupId)
+        {
+            try
+            {
+                var entity = Groups.Include("Users").Where(x => x.Id == groupId).FirstOrDefault();
+                entity.Users.Add(ReadUser(userId));
+                SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        //User
 
         public void CreateUser(User user)
         {
@@ -64,7 +89,7 @@ namespace DBContext
         {
             try
             {
-                return Users.Include("Groups").Where(x => x.Id == userid).FirstOrDefault();
+                return Users.Where(x => x.Id == userid).FirstOrDefault();
             }
             catch (Exception)
             {
