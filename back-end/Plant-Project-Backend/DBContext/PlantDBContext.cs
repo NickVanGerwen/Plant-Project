@@ -39,6 +39,9 @@ namespace DBContext
             }
         }
 
+
+  
+
         public List<Group> ReadUserGroups(int userid)
         {
             try
@@ -46,8 +49,13 @@ namespace DBContext
                 User user = Users.Include("Groups").Where(u => u.Id == userid).FirstOrDefault();
                 foreach (Group group in user.Groups)
                 {
+                    Groups.Include("Users").Where(g=>g.Id == group.Id).FirstOrDefault();
+                    group.UserCount = group.Users.Count();
                     group.Users = null;
                 }
+
+                //user.GroupCount = user.Groups.Count();
+
                 return user.Groups;
             }
             catch (Exception)
@@ -55,6 +63,25 @@ namespace DBContext
                 throw;
             }
         }
+
+        public List<User> ReadGroupUsers(int groupid)
+        {
+            try
+            {
+                Group group = Groups.Include("Users").Where(g => g.Id == groupid).FirstOrDefault();
+                foreach (User user in group.Users)
+                {
+                    group.UserCount = group.Users.Count();
+                    user.Groups = null;
+                }
+                return group.Users;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         public void AddUserToGroup(int userId, int groupId)
         {

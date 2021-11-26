@@ -28,6 +28,15 @@ namespace Plant_Project_Backend.Controllers
             return context.ReadUserGroups(userid);
         }
 
+
+        [HttpGet]
+        [Route("GroupUsers")]
+        public List<User> GetUsersByGroup(int groupid)
+        {
+            return context.ReadGroupUsers(groupid);
+        }
+
+
         [HttpPost]
         [Route("NewGroup")]
         public int CreateGroup(int userid, string groupName, string groupPassword)
