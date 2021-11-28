@@ -1,18 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from './components/Button';
-import FamilyList from './components/FamilyList';
+import FamiliesPage from './pages/FamiliesPage';
+import NavBar from './components/NavBar';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import React from 'react'
+
 
 function App() {
-  // const onClick = () => {
-  //   console.log('button clicked')
-  // }
-
   return (
-    <FamilyList />
-
-
-    // <Button onClick={onClick} text='hello' />
+    <div>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path='/' exact component={null} />
+          <Route path='/FamiliesPage' exact component={FamiliesPage} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
