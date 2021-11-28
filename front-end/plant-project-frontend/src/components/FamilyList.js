@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import axios from "axios";
-
 import { Variables } from './APIURLs';
 
 
 function FamilyList() {
-
     const [families, setfamilies] = useState([])
 
     async function getUserFamilies() {
@@ -53,7 +50,7 @@ function FamilyList() {
                     </table>
 
                 </div>
-                : <a>geen families gevonden.</a>
+                : <div>geen families gevonden.</div>
             }
 
         </div>

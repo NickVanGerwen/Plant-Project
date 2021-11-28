@@ -1,12 +1,11 @@
-import { Nav } from "react-bootstrap"
 import { Link } from 'react-router-dom';
+import React from "react";
+
 
 function NavBar() {
     return (
-
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-            <a class="navbar-brand" style={{ marginLeft: "10px" }}>Plant Project</a>
+            <div class="navbar-brand" style={{ marginLeft: "10px" }}>Plant Project</div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

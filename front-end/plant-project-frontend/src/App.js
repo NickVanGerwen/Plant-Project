@@ -1,6 +1,8 @@
 import FamiliesPage from './pages/FamiliesPage';
 import NavBar from './components/NavBar';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import React from 'react'
+
 
 function App() {
   return (
