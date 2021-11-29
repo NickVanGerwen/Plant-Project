@@ -2,7 +2,7 @@ import FamiliesPage from './pages/FamiliesPage';
 import NavBar from './components/NavBar';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import React from 'react'
-
+import GroupInfoPage from './pages/GroupInfoPage';
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route path='/' exact component={null} />
-          <Route path='/FamiliesPage' exact component={FamiliesPage} />
+          <Route path='/GroupInfo' exact component={GroupInfoPage} />
+          <Route path='/Families' exact component={FamiliesPage} />
         </Switch>
       </Router>
     </div>

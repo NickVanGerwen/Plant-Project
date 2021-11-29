@@ -11,15 +11,15 @@ function NavBar() {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
+                    {/* <li class="nav-item">
+                        <Link to={{ pathname: "/GroupInfo", state: { id: 1 } }} class="nav-link" > Home</Link>
+                    </li> */}
                     <li class="nav-item">
-                        <Link to="/" class="nav-link">Home</Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link to="/FamiliesPage" class="nav-link">Families</Link>
+                        <Link to="/Families" class="nav-link">Families</Link>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav >
     )
 }
 export default NavBar
