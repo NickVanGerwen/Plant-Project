@@ -9,6 +9,7 @@ function GroupInfoPage(props) {
     const [family, setFamily] = useState([]);
     const [familyLoaded, setFamilyLoaded] = useState(false);
 
+
     async function GetFamilyById(id) {
         try {
             const apirequest = await axios.get(Variables.GetGroupByGroupIdUrl + props.location.state.id);
@@ -35,7 +36,7 @@ function GroupInfoPage(props) {
         <div className="page" >
             {familyLoaded ?
                 <>
-                    <h1 style={{ marginLeft: '1%', marginTop: '1%' }}></h1>
+                    <h1 style={{ marginLeft: '1%', marginTop: '1%' }}>maak hier naam van fam van</h1>
                     <hr />
                     <h2>Planten</h2>
                     <PlantList Plants={family.plants} />
@@ -43,7 +44,6 @@ function GroupInfoPage(props) {
                     <h2>gebruikers</h2>
                     <UserList Group={family[0]} />
                 </>
-
                 : null}
         </div>
     )
