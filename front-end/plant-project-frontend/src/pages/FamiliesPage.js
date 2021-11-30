@@ -3,8 +3,9 @@ import React from "react";
 
 function FamiliesPage() {
     return (
-        <div>
-            <h1>Families</h1>
+        <div className="page">
+            <h1 style={{ marginLeft: '1%', marginTop: '1%' }}>Families</h1>
+            <hr />
             <FamilyList />
         </div>
     )

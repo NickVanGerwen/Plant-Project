@@ -28,36 +28,33 @@ function FamilyList() {
 
     function MoreDetails(id) {
         document.getElementById("fam" + id).click();
-        console.log("aaa" + id);
     }
 
     return (
-        <div>
-            {families != null ?
-                <div>
-                    <table className="table">
-                        <thead>
-                            <tr id="troverride">
-                                <th>name</th>
-                                <th>aantal gebruikers</th>
-                                <th>password</th>
+        families != null ?
+            <div>
+                <table className="table">
+                    <thead>
+                        <tr id="troverride">
+                            <th>name</th>
+                            <th>aantal gebruikers</th>
+                            <th>password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {families.map(fam => (
+                            <tr onClick={() => MoreDetails(fam.id)}>
+                                <th>{fam.name}</th>
+                                <th>{fam.userCount}</th>
+                                <th>{fam.password}</th>
+                                <Link hidden id={"fam" + fam.id} to={{ pathname: "/GroupInfo", state: { id: fam.id } }} />
                             </tr>
-                        </thead>
-                        <tbody>
-                            {families.map(fam => (
-                                <tr onClick={() => MoreDetails(fam.id)}>
-                                    <th>{fam.name}</th>
-                                    <th>{fam.userCount}</th>
-                                    <th>{fam.password}</th>
-                                    <Link hidden id={"fam" + fam.id} to={{ pathname: "/GroupInfo", state: { id: fam.id } }} />
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                : <div>geen families gevonden.</div>
-            }
-        </div>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            : <div>geen families gevonden.</div>
+
     )
 }
 

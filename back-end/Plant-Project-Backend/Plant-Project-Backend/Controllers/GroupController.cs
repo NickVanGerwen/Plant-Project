@@ -28,6 +28,12 @@ namespace Plant_Project_Backend.Controllers
             return context.ReadUserGroups(userid);
         }
 
+        [HttpGet]
+        [Route("GroupDetails")]
+        public List<Group> GetGroupDetails(int groupid)
+        {
+            return new List<Group>() { context.ReadGroupDetails(groupid) };
+        }
 
         [HttpGet]
         [Route("GroupUsers")]

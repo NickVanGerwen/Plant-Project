@@ -1,10 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Variables } from '../components/APIURLs';
+import UserList from '../components/UserList';
+import PlantList from "../components/PlantList"
+
 
 function GroupInfoPage(props) {
-    console.log(props.location.state.id);
+    const [family, setFamily] = useState([]);
+    const [familyLoaded, setFamilyLoaded] = useState(false);
+
+    async function GetFamilyById(id) {
+        try {
+            const apirequest = await axios.get(Variables.GetGroupByGroupIdUrl + props.location.state.id);
+            setFamilyLoaded(true);
+            return apirequest.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function SetFamily(id) {
+        setFamily(await GetFamilyById(id));
+
+        return;
+    }
+
+    useEffect(() => {
+        if (!familyLoaded && props.location.state.id !== null) {
+            SetFamily(props.location.state.id);
+        }
+    })
+
     return (
-        <div>
-            aaaaaaa
+        <div className="page" >
+            {familyLoaded ?
+                <>
+                    <h1 style={{ marginLeft: '1%', marginTop: '1%' }}></h1>
+                    <hr />
+                    <h2>Planten</h2>
+                    <PlantList Plants={family.plants} />
+                    <hr />
+                    <h2>gebruikers</h2>
+                    <UserList Group={family[0]} />
+                </>
+
+                : null}
         </div>
     )
 }
