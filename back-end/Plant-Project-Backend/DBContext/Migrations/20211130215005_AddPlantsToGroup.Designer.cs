@@ -4,14 +4,16 @@ using DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DBContext.Migrations
 {
     [DbContext(typeof(PlantDBContext))]
-    partial class PlantDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211130215005_AddPlantsToGroup")]
+    partial class AddPlantsToGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,9 +69,6 @@ namespace DBContext.Migrations
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("WaterInterval")
-                        .HasColumnType("time");
 
                     b.Property<DateTime>("WaterTime")
                         .HasColumnType("datetime2");

@@ -12,6 +12,7 @@ namespace DBContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<Plant> Plants { get; set; }
         public PlantDBContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
 
@@ -62,12 +63,11 @@ namespace DBContext
         {
             try
             {
-                Group group = Groups.Include("Users").Where(g => g.Id == groupid).FirstOrDefault();
+                Group group = Groups.Include("Users").Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
                 foreach (User user in group.Users)
                 {
                     user.Groups = null;
                 }
-
                 return group;
             }
             catch (Exception)
@@ -135,5 +135,18 @@ namespace DBContext
                 throw;
             }
         }
+
+        //Plant
+
+        public void CreatePlant(string name, string type, TimeSpan waterInterval, int groupid)
+        {
+            Plant plant =   new Plant() { Name = name, Type = type, WaterInterval = waterInterval, WaterTime = DateTime.Now + waterInterval };
+
+            Plants.Add(plant);
+            Group group  = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
+            group.Plants.Add(plant);
+            SaveChanges();
+        }
+
     }
 }

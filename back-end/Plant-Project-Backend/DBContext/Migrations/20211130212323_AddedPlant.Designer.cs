@@ -4,14 +4,16 @@ using DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DBContext.Migrations
 {
     [DbContext(typeof(PlantDBContext))]
-    partial class PlantDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211130212323_AddedPlant")]
+    partial class AddedPlant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,24 +61,16 @@ namespace DBContext.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("WaterInterval")
-                        .HasColumnType("time");
-
                     b.Property<DateTime>("WaterTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
 
                     b.ToTable("Plants");
                 });
@@ -112,18 +106,6 @@ namespace DBContext.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Logic.Plant", b =>
-                {
-                    b.HasOne("Logic.Group", null)
-                        .WithMany("Plants")
-                        .HasForeignKey("GroupId");
-                });
-
-            modelBuilder.Entity("Logic.Group", b =>
-                {
-                    b.Navigation("Plants");
                 });
 #pragma warning restore 612, 618
         }

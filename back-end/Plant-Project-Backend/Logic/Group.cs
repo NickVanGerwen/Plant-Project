@@ -15,7 +15,7 @@ namespace Logic
         public string Name { get; set; }
         public string Password{ get; set; }
         public List<User> Users{ get; set; }
-        
+        public List<Plant> Plants { get; set; }
 
     }
 }
