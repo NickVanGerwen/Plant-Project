@@ -15,6 +15,7 @@ function PlantList({ Group }) {
                     <th>Water nodig</th>
                     <th>Naam</th>
                     <th>Type</th>
+                    <th>Hoe vaak</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,9 @@ function PlantList({ Group }) {
                         <th>{plant.waterTime}</th>
                         <th>{plant.name}</th>
                         <th>{plant.type}</th>
+                        {plant.waterIntervalInDays <= 2 ? <th>elke dag</th> : <th>elke {plant.waterIntervalInDays} dagen</th>}
+
+
                     </tr>
                 ))}
             </tbody>

@@ -47,9 +47,12 @@ namespace DBContext
                 User user = Users.Include("Groups").Where(u => u.Id == userid).FirstOrDefault();
                 foreach (Group group in user.Groups)
                 {
-                    Groups.Include("Users").Where(g => g.Id == group.Id).FirstOrDefault();
+                    Groups.Include("Users").Include("Plants").Where(g => g.Id == group.Id).FirstOrDefault();
                     group.UserCount = group.Users.Count();
                     group.Users = null;
+
+                    group.PlantCount = group.Plants.Count();
+                    group.Plants = null;
                 }
                 return user.Groups;
             }
