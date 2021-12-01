@@ -138,13 +138,14 @@ namespace DBContext
 
         //Plant
 
-        public void CreatePlant(string name, string type, TimeSpan waterInterval, int groupid)
+        public void CreatePlant(string name, string type, int waterInterval, int groupid)
         {
-            Plant plant =   new Plant() { Name = name, Type = type, WaterInterval = waterInterval, WaterTime = DateTime.Now + waterInterval };
+            Plant plant = new Plant() { Name = name, Type = type, WaterIntervalInDays = waterInterval, WaterTime = DateTime.Now.AddDays(waterInterval) };
+            Group group = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
 
             Plants.Add(plant);
-            Group group  = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
             group.Plants.Add(plant);
+
             SaveChanges();
         }
 

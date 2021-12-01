@@ -39,7 +39,6 @@ namespace Plant_Project_Backend.Controllers
             return context.ReadGroupUsers(groupid);
         }
 
-
         [HttpPost]
         [Route("NewGroup")]
         public int CreateGroup(int userid, string groupName, string groupPassword)

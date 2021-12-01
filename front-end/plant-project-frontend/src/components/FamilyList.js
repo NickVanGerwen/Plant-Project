@@ -37,23 +37,23 @@ function FamilyList() {
                     <thead>
                         <tr id="troverride">
                             <th>name</th>
+                            <th>aantal planten</th>
                             <th>aantal gebruikers</th>
-                            <th>password</th>
                         </tr>
                     </thead>
                     <tbody>
                         {families.map(fam => (
                             <tr onClick={() => MoreDetails(fam.id)}>
                                 <th>{fam.name}</th>
+                                <th></th>
                                 <th>{fam.userCount}</th>
-                                <th>{fam.password}</th>
                                 <Link hidden id={"fam" + fam.id} to={{ pathname: "/GroupInfo", state: { id: fam.id } }} />
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            : <div>geen families gevonden.</div>
+            : <div>geen groepen gevonden.</div>
 
     )
 }

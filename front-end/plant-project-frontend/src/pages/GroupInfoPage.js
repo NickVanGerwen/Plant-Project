@@ -36,12 +36,12 @@ function GroupInfoPage(props) {
         <div className="page" >
             {familyLoaded ?
                 <>
-                    <h1 style={{ marginLeft: '1%', marginTop: '1%' }}>maak hier naam van fam van</h1>
+                    <h1 style={{ marginLeft: '1%', marginTop: '1%' }}>name</h1>
                     <hr />
-                    <h2>Planten</h2>
-                    <PlantList Plants={family.plants} />
+                    <h2 style={{ marginLeft: '1%', marginTop: '1%' }}>Planten</h2>
+                    <PlantList Group={family[0]} />
                     <hr />
-                    <h2>gebruikers</h2>
+                    <h2 style={{ marginLeft: '1%', marginTop: '1%' }}>gebruikers</h2>
                     <UserList Group={family[0]} />
                 </>
                 : null}

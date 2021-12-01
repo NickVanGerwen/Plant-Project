@@ -12,7 +12,7 @@ namespace Logic
         public string Name { get; set; }
         public string Type { get; set; }
         public DateTime WaterTime{ get; set; }
-        public TimeSpan WaterInterval { get; set; }
+        public int WaterIntervalInDays { get; set; }
 
     }
 }

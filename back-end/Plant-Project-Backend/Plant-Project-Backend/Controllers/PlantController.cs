@@ -17,11 +17,11 @@ namespace Plant_Project_Backend.Controllers
 
         [HttpPost]
         [Route("NewPlant")]
-        public int CreatePlant(string name, string type,TimeSpan waterInterval, int groupid)
+        public int CreatePlant(string name, string type,int waterIntervalinDays, int groupid)
         {
             try
             {
-                context.CreatePlant(name, type, waterInterval, groupid);
+                context.CreatePlant(name, type, waterIntervalinDays, groupid);
                 return 201;
             }
             catch (Exception)

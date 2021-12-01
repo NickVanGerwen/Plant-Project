@@ -15,7 +15,7 @@ function NavBar() {
                         <Link to={{ pathname: "/GroupInfo", state: { id: 1 } }} class="nav-link" > Home</Link>
                     </li> */}
                     <li class="nav-item">
-                        <Link to="/Families" class="nav-link">Families</Link>
+                        <Link to="/Families" class="nav-link">Groepen</Link>
                     </li>
                 </ul>
             </div>
