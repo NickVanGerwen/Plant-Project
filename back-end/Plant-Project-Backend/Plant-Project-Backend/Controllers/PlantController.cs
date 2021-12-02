@@ -15,7 +15,7 @@ namespace Plant_Project_Backend.Controllers
             context = plantDBContext;
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("NewPlant")]
         public int CreatePlant(string name, string type,int waterIntervalinDays, int groupid)
         {

@@ -40,11 +40,11 @@ function GroupInfoPage(props) {
                     <hr />
                     <h2 style={{ marginLeft: '1%', marginTop: '1%' }}>Planten</h2>
                     <PlantList Group={family[0]} />
-                    <hr />
                     <h2 style={{ marginLeft: '1%', marginTop: '1%' }}>gebruikers</h2>
                     <UserList Group={family[0]} />
                 </>
-                : null}
+                : null
+            }
         </div>
     )
 }

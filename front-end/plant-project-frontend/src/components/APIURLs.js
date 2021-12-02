@@ -1,4 +1,7 @@
+var BaseUrl = "https://localhost:44301/";
+
 export const Variables = {
-    GetGroupsByUserUrl: "https://localhost:44301/Group/UserGroups?userid=1",
-    GetGroupByGroupIdUrl: "https://localhost:44301/Group/GroupDetails?groupid="
+    BaseUrl: BaseUrl,
+    GetGroupsByUserUrl: BaseUrl + "Group/UserGroups?userid=1",
+    GetGroupByGroupIdUrl: BaseUrl + "Group/GroupDetails?groupid="
 };
