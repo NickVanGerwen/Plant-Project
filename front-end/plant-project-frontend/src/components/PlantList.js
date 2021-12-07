@@ -23,8 +23,12 @@ function PlantList({ Group }) {
         var name = document.getElementById("plantname").value;
         var type = document.getElementById("planttype").value;
         var waterinterval = document.getElementById("plantwaterinterval").value;
-        axios.put(Variables.BaseUrl + "NewPlant?name=" + name + "&type=" + type + "&waterIntervalinDays=" + waterinterval + "&groupid=" + Group.id)
-        window.location.reload(false);
+        if (name == "" || type == "" || waterinterval == 0) {
+            alert("vul alle velden in");
+        } else {
+            axios.put(Variables.BaseUrl + "NewPlant?name=" + name + "&type=" + type + "&waterIntervalinDays=" + waterinterval + "&groupid=" + Group.id)
+            window.location.reload(false);
+        }
     }
 
     return (
@@ -54,7 +58,7 @@ function PlantList({ Group }) {
                             </th>
                             <th style={{ width: "25%" }}><Form.Control placeholder="naam" id="plantname" /></th>
                             <th style={{ width: "25%" }}><Form.Control placeholder="type" id="planttype" /></th>
-                            <th style={{ width: "25%" }}><Form.Control placeholder="aantal dagen" id="plantwaterinterval" /></th>
+                            <th style={{ width: "25%" }}><Form.Control type="number" placeholder="aantal dagen" id="plantwaterinterval" /></th>
                         </tr>
                         :
                         <tr id="troverride" >

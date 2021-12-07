@@ -16,6 +16,8 @@ namespace DBContext
         public PlantDBContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
 
+        DateCalculator DateCalculator = new DateCalculator();
+        
         //group
 
         public void CreateGroup(int userId, string groupName, string groupPassword)
@@ -143,18 +145,25 @@ namespace DBContext
 
         public void CreatePlant(string name, string type, int waterInterval, int groupid)
         {
-            Plant plant = new Plant()
+            try
             {
-                Name = name,
-                Type = type,
-                WaterIntervalInDays = waterInterval,
-                WaterTime = DateTime.Now.AddDays(waterInterval)
-            };
-            Group group = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
-            Plants.Add(plant);
-            group.Plants.Add(plant);
+                Plant plant = new Plant()
+                {
+                    Name = name,
+                    Type = type,
+                    WaterIntervalInDays = waterInterval,
+                    WaterTime = DateCalculator.CalcNextWaterDate(DateTime.Now, waterInterval)
+                };
+                Plants.Add(plant);
+                Group group = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
+                group.Plants.Add(plant);
 
-            SaveChanges();
+                SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
     }
