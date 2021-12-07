@@ -33,6 +33,7 @@ function FamilyList() {
     return (
         families != null ?
             <div>
+                {console.log(families)}
                 <table className="table">
                     <thead>
                         <tr id="troverride">

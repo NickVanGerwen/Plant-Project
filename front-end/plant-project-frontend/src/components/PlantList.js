@@ -40,9 +40,9 @@ function PlantList({ Group }) {
                 </thead>
                 <tbody>
                     {plantarray.map(plant => (
-                        <tr>
+                        <tr data-testid="plantlist">
                             <th style={{ width: "25%" }}>{plant.waterTime}</th>
-                            <th style={{ width: "25%" }}>{plant.name}</th>
+                            <th data-testid={"plant" + plant.id} style={{ width: "25%" }}>{plant.name}</th>
                             <th style={{ width: "25%" }}>{plant.type}</th>
                             {plant.waterIntervalInDays <= 2 ? <th style={{ width: "25%" }}>elke dag</th> : <th style={{ width: "25%" }}>elke {plant.waterIntervalInDays} dagen</th>}
                         </tr>

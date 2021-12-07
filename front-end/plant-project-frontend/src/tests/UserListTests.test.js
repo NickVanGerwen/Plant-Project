@@ -1,7 +1,7 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import PlantList from "../components/PlantList";
+import UserList from "../components/UserList";
 
 const group = {
     "userCount": 0,
@@ -9,16 +9,16 @@ const group = {
     "id": 1,
     "name": "Thuis",
     "password": "123",
-    "users": null,
-    "plants": [
+    "users": [
         {
+            "groupCount": 0,
             "id": 1,
-            "name": "vensterbank links",
-            "type": "Aloë vera",
-            "waterTime": "2021-12-12T10:26:24.2109285",
-            "waterIntervalInDays": 10
+            "name": "Nick",
+            "password": "123",
+            "groups": null
         }
-    ]
+    ],
+    "plants": null
 }
 
 let container = null;
@@ -35,17 +35,17 @@ afterEach(() => {
     container = null;
 });
 
-it("renders plant table", () => {
+it("renders user table", () => {
     act(() => {
-        render(<PlantList Group={group} />, container);
+        render(<UserList />, container);
     });
-    expect(container.textContent).toContain("Water nodig");
+    expect(container.textContent).toContain("Naam");
 });
 
-it("renders plant table with data", () => {
+it("renders user table with data", () => {
     act(() => {
-        render(<PlantList Group={group} />, container);
+        render(<UserList Group={group} />, container);
     });
-    expect(container.textContent).toContain("vensterbank links");
+    expect(container.textContent).toContain("Nick");
 });
 
