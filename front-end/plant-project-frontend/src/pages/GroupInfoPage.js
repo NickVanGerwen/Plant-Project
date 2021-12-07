@@ -4,13 +4,13 @@ import { Variables } from '../components/APIURLs';
 import UserList from '../components/UserList';
 import PlantList from "../components/PlantList"
 
-
 function GroupInfoPage(props) {
     const [family, setFamily] = useState([]);
     const [familyLoaded, setFamilyLoaded] = useState(false);
 
 
-    async function GetFamilyById(id) {
+    console.log(props.location.state.id + ", " + props.location.state.name)
+    async function GetFamilyById() {
         try {
             const apirequest = await axios.get(Variables.GetGroupByGroupIdUrl + props.location.state.id);
             setFamilyLoaded(true);
@@ -20,15 +20,14 @@ function GroupInfoPage(props) {
         }
     }
 
-    async function SetFamily(id) {
-        setFamily(await GetFamilyById(id));
-
+    async function SetFamily() {
+        setFamily(await GetFamilyById());
         return;
     }
 
     useEffect(() => {
         if (!familyLoaded && props.location.state.id !== null) {
-            SetFamily(props.location.state.id);
+            SetFamily();
         }
     })
 

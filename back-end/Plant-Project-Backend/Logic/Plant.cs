@@ -13,6 +13,5 @@ namespace Logic
         public string Type { get; set; }
         public DateTime WaterTime{ get; set; }
         public int WaterIntervalInDays { get; set; }
-
     }
 }

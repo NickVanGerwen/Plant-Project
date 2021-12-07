@@ -143,9 +143,14 @@ namespace DBContext
 
         public void CreatePlant(string name, string type, int waterInterval, int groupid)
         {
-            Plant plant = new Plant() { Name = name, Type = type, WaterIntervalInDays = waterInterval, WaterTime = DateTime.Now.AddDays(waterInterval) };
+            Plant plant = new Plant()
+            {
+                Name = name,
+                Type = type,
+                WaterIntervalInDays = waterInterval,
+                WaterTime = DateTime.Now.AddDays(waterInterval)
+            };
             Group group = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
-
             Plants.Add(plant);
             group.Plants.Add(plant);
 

@@ -4,8 +4,6 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Variables } from '../components/APIURLs';
 
-
-
 function PlantList({ Group }) {
     const [createPlantActive, setcreatePlantActive] = useState(false);
 
