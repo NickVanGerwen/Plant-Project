@@ -23,7 +23,7 @@ function PlantList({ Group }) {
         var name = document.getElementById("plantname").value;
         var type = document.getElementById("planttype").value;
         var waterinterval = document.getElementById("plantwaterinterval").value;
-        if (name == "" || type == "" || waterinterval == 0) {
+        if (name === "" || type === "" || waterinterval === 0) {
             alert("vul alle velden in");
         } else {
             axios.put(Variables.BaseUrl + "NewPlant?name=" + name + "&type=" + type + "&waterIntervalinDays=" + waterinterval + "&groupid=" + Group.id)
