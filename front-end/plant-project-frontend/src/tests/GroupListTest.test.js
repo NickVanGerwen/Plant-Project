@@ -4,7 +4,6 @@ import { act } from "react-dom/test-utils";
 import FamilyList from "../components/FamilyList";
 import { screen } from "@testing-library/react"
 
-
 let container = null;
 beforeEach(() => {
     // setup a DOM element as a render target
