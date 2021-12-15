@@ -27,6 +27,6 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        file: ./back-end/Plant-Project-Backend/Plant-Project-Backend/Dockerfile
+        file: /back-end/Plant-Project-Backend/Plant-Project-Backend/Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
