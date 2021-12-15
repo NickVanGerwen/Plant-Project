@@ -6,11 +6,11 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /src
-COPY ["Plant-Project-Backend/Plant-Project-Backend.csproj", "Plant-Project-Backend/"]
+WORKDIR "/src/Plant-Project-Backend"
+
+COPY ["Plant-Project-Backend.csproj", "Plant-Project-Backend/"]
 RUN dotnet restore "Plant-Project-Backend/Plant-Project-Backend.csproj"
 COPY . .
-WORKDIR "/src/Plant-Project-Backend"
 RUN dotnet build "Plant-Project-Backend.csproj" -c Release -o /app/build
 
 FROM build AS publish
