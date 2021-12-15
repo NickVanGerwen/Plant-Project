@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Variables } from '../components/APIURLs';
+import wateringcan from '../wateringcan.ico'
 
 function PlantList({ Group }) {
     const [createPlantActive, setcreatePlantActive] = useState(false);
@@ -31,6 +32,11 @@ function PlantList({ Group }) {
         }
     }
 
+
+    function WaterPlant(plantid) {
+        console.log("watered plant: " + plantid)
+    }
+
     return (
         <>
             <table className="table">
@@ -45,26 +51,26 @@ function PlantList({ Group }) {
                 <tbody>
                     {plantarray.map(plant => (
                         <tr data-testid="plantlist">
-                            <th style={{ width: "25%" }}>{plant.waterTime}</th>
-                            <th data-testid={"plant" + plant.id} style={{ width: "25%" }}>{plant.name}</th>
-                            <th style={{ width: "25%" }}>{plant.type}</th>
-                            {plant.waterIntervalInDays <= 2 ? <th style={{ width: "25%" }}>elke dag</th> : <th style={{ width: "25%" }}>elke {plant.waterIntervalInDays} dagen</th>}
+                            <td style={{ width: "25%" }}> <img src={wateringcan} style={{ width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} />{plant.waterTime.substr(0, 10)}</td>
+                            <td data-testid={"plant" + plant.id} style={{ width: "25%" }}>{plant.name}</td>
+                            <td style={{ width: "25%" }}>{plant.type}</td>
+                            {plant.waterIntervalInDays <= 2 ? <td style={{ width: "25%" }}>elke dag</td> : <td style={{ width: "25%" }}>elke {plant.waterIntervalInDays} dagen</td>}
                         </tr>
                     ))}
                     {createPlantActive ?
                         <tr id="troverride">
-                            <th style={{ width: "25%" }}>
+                            <td style={{ width: "25%" }}>
                                 <Button style={{ marginLeft: "2%", marginTop: "1%", backgroundColor: "red" }} variant="secondary" onClick={() => TogglePopup()} >X</Button> <Button style={{ marginLeft: "2%", marginTop: "1%" }} variant="secondary" onClick={() => AddPlant()}>Voeg Toe</Button>
-                            </th>
-                            <th style={{ width: "25%" }}><Form.Control placeholder="naam" id="plantname" /></th>
-                            <th style={{ width: "25%" }}><Form.Control placeholder="type" id="planttype" /></th>
-                            <th style={{ width: "25%" }}><Form.Control type="number" placeholder="aantal dagen" id="plantwaterinterval" /></th>
+                            </td>
+                            <td style={{ width: "25%" }}><Form.Control placeholder="naam" id="plantname" /></td>
+                            <td style={{ width: "25%" }}><Form.Control placeholder="type" id="planttype" /></td>
+                            <td style={{ width: "25%" }}><Form.Control type="number" placeholder="aantal dagen" id="plantwaterinterval" /></td>
                         </tr>
                         :
                         <tr id="troverride" >
-                            <th style={{ width: "25%" }}>
+                            <td style={{ width: "25%" }}>
                                 <Button style={{ marginLeft: "2%", marginTop: "1%" }} variant="secondary" onClick={() => TogglePopup()}>Plant toevoegen</Button>
-                            </th>
+                            </td>
                         </tr>
                     }
                 </tbody>
