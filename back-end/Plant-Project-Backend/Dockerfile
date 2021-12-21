@@ -14,7 +14,7 @@ COPY ["back-end/Plant-Project-Backend/DBContext/DBContext.csproj", "back-end/Pla
 COPY ["back-end/Plant-Project-Backend/Logic/Logic.csproj", "back-end/Plant-Project-Backend/Logic/"]
 RUN dotnet restore "back-end/Plant-Project-Backend/Plant-Project-Backend.csproj"
 COPY . .
-WORKDIR "/src/back-end/Plant-Project-Backend"
+WORKDIR "/src/back-end/Plant-Project-Backend/Plant-Project-Backend"
 RUN dotnet build "Plant-Project-Backend.csproj" -c Release -o /app/build
 
 FROM build AS publish
