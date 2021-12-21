@@ -12,8 +12,8 @@ WORKDIR "/src"
 COPY ["back-end/Plant-Project-Backend/Plant-Project-Backend/Plant-Project-Backend.csproj", "back-end/Plant-Project-Backend/Plant-Project-Backend/"]
 COPY ["back-end/Plant-Project-Backend/DBContext/DBContext.csproj", "back-end/Plant-Project-Backend/DBContext/"]
 COPY ["back-end/Plant-Project-Backend/Logic/Logic.csproj", "back-end/Plant-Project-Backend/Logic/"]
+RUN dotnet restore "back-end/Plant-Project-Backend/Plant-Project-Backend/Plant-Project-Backend.csproj"
 COPY . .
-RUN dotnet restore "back-end/Plant-Project-Backend/Plant-Project-Backend.csproj"
 WORKDIR "/src/back-end/Plant-Project-Backend/Plant-Project-Backend"
 RUN dotnet build "Plant-Project-Backend.csproj" -c Release -o /app/build
 
