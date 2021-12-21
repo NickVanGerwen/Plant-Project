@@ -10,8 +10,8 @@ ENV ASPNETCORE_ENVIRONMENT=Development
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR "/src"
 COPY ["back-end/Plant-Project-Backend/Plant-Project-Backend/Plant-Project-Backend.csproj", "back-end/Plant-Project-Backend/"]
-COPY ["back-end/Plant-Project-Backend/DBContext/DBContext.csproj", "back-end/Plant-Project-Backend/"]
-COPY ["back-end/Plant-Project-Backend/Logic/Logic.csproj", "back-end/Plant-Project-Backend/"]
+COPY ["back-end/Plant-Project-Backend/DBContext/DBContext.csproj", "back-end/Plant-Project-Backend/DBContext/"]
+COPY ["back-end/Plant-Project-Backend/Logic/Logic.csproj", "back-end/Plant-Project-Backend/Logic/"]
 RUN dotnet restore "back-end/Plant-Project-Backend/Plant-Project-Backend.csproj"
 COPY . .
 WORKDIR "/src/back-end/Plant-Project-Backend"
