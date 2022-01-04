@@ -165,5 +165,19 @@ namespace DBContext
                 throw;
             }
         }
+
+        public void WaterPlant(int plantid)
+        {
+            try
+            {
+                var entity = Plants.Where(x => x.Id == plantid).FirstOrDefault();
+                entity.WaterTime = DateCalculator.CalcNextWaterDate(entity.WaterTime,entity.WaterIntervalInDays);
+                SaveChanges();
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
     }
 }
