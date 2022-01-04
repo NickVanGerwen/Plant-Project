@@ -27,13 +27,21 @@ function PlantList({ Group }) {
         if (name === "" || type === "" || waterinterval === 0) {
             alert("vul alle velden in");
         } else {
-            axios.put(Variables.BaseUrl + "NewPlant?name=" + name + "&type=" + type + "&waterIntervalinDays=" + waterinterval + "&groupid=" + Group.id)
+            axios.put(Variables.PutNewPlant + "name=" + name + "&type=" + type + "&waterIntervalinDays=" + waterinterval + "&groupid=" + Group.id)
             window.location.reload(false);
         }
     }
 
 
     function WaterPlant(plantid) {
+        try {
+            axios.patch(Variables.PatchPlantDate + plantid)
+            window.location.reload(false);
+
+        } catch (error) {
+            alert("Connectie gefaald")
+            console.error(error);
+        }
         console.log("watered plant: " + plantid)
     }
 
@@ -51,7 +59,7 @@ function PlantList({ Group }) {
                 <tbody>
                     {plantarray.map(plant => (
                         <tr data-testid="plantlist">
-                            <td style={{ width: "25%" }}> <img src={wateringcan} style={{ width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} />{plant.waterTime.substr(0, 10)}</td>
+                            <td style={{ width: "25%" }}> <img alt="water" src={wateringcan} style={{ width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} />{plant.waterTime.substr(0, 10)}</td>
                             <td data-testid={"plant" + plant.id} style={{ width: "25%" }}>{plant.name}</td>
                             <td style={{ width: "25%" }}>{plant.type}</td>
                             {plant.waterIntervalInDays <= 2 ? <td style={{ width: "25%" }}>elke dag</td> : <td style={{ width: "25%" }}>elke {plant.waterIntervalInDays} dagen</td>}

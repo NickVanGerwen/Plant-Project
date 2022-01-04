@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Plant_Project_Backend.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class PlantController : ControllerBase
     {
         PlantDBContext context;
@@ -23,6 +25,22 @@ namespace Plant_Project_Backend.Controllers
             {
                 context.CreatePlant(name, type, waterIntervalinDays, groupid);
                 return 201;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        [HttpPatch]
+        [Route("WaterPlant")]
+        public int WaterPlant(int plantId)
+        {
+            try
+            {
+                context.WaterPlant(plantId);
+                return 204;
             }
             catch (Exception)
             {
