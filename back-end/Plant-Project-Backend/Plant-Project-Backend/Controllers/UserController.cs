@@ -7,10 +7,6 @@ namespace Plant_Project_Backend.Controllers
 {
     public class UserController
     {
-        //IUserMaintainer userMaintainer;
-        //public UserController(IUserMaintainer _userMaintainer)
-        //{
-        //    userMaintainer = _userMaintainer;
-        //}
+
     }
 }

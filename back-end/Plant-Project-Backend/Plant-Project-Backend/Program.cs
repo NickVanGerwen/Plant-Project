@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Plant_Project_Backend
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

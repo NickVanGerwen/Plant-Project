@@ -14,16 +14,13 @@ namespace DBContext
         public DbSet<Group> Groups { get; set; }
         public DbSet<Plant> Plants { get; set; }
         public PlantDBContext(DbContextOptions options) : base(options) { }
-        protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder) => base.OnModelCreating(modelBuilder);
 
-        DateCalculator DateCalculator = new DateCalculator();
         
         //group
 
         public void CreateGroup(int userId, string groupName, string groupPassword)
         {
-            try
-            {
                 Groups.Add(
                     new Group()
                     {
@@ -35,68 +32,42 @@ namespace DBContext
                         }
                     });
                 SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         public List<Group> ReadUserGroups(int userid)
         {
-            try
-            {
                 User user = Users.Include("Groups").Where(u => u.Id == userid).FirstOrDefault();
                 foreach (Group group in user.Groups)
                 {
                     Groups.Include("Users").Include("Plants").Where(g => g.Id == group.Id).FirstOrDefault();
-                    group.UserCount = group.Users.Count();
+                    group.UserCount = group.Users.Count;
                     group.Users = null;
 
-                    group.PlantCount = group.Plants.Count();
+                    group.PlantCount = group.Plants.Count;
                     group.Plants = null;
                 }
                 return user.Groups;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         public Group ReadGroupDetails(int groupid)
         {
-            try
-            {
                 Group group = Groups.Include("Users").Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
                 foreach (User user in group.Users)
                 {
                     user.Groups = null;
                 }
                 return group;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         public List<User> ReadGroupUsers(int groupid)
         {
-            try
-            {
                 Group group = Groups.Include("Users").Where(g => g.Id == groupid).FirstOrDefault();
                 foreach (User user in group.Users)
                 {
-                    group.UserCount = group.Users.Count();
+                    group.UserCount = group.Users.Count;
                     user.Groups = null;
                 }
                 return group.Users;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
 

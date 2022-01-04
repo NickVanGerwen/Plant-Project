@@ -11,7 +11,7 @@ namespace Plant_Project_Backend.Controllers
     [Route("[controller]")]
     public class PlantController : ControllerBase
     {
-        PlantDBContext context;
+       readonly PlantDBContext context;
         public PlantController(PlantDBContext plantDBContext)
         {
             context = plantDBContext;
@@ -28,7 +28,7 @@ namespace Plant_Project_Backend.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return 500;
             }
         }
 
@@ -44,7 +44,7 @@ namespace Plant_Project_Backend.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return 500;
             }
         }
     }
