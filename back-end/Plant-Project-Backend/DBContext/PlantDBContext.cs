@@ -90,6 +90,22 @@ namespace DBContext
             return Users.Where(x => x.Id == userid).FirstOrDefault();
         }
 
+        public List<Group> ReadGroups()
+        {
+            List<Group> groups = Groups.Include("Users").Include("Plants").ToList();
+
+            foreach (Group group in groups)
+            {
+                group.UserCount = group.Users.Count;
+                group.Users = null;
+
+                group.PlantCount = group.Plants.Count;
+                group.Plants = null;
+            }
+
+            return groups;
+        }
+
         //Plant
 
         public void CreatePlant(string name, string type, int waterInterval, int groupid)

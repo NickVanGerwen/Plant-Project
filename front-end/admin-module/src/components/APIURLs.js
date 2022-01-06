@@ -3,5 +3,7 @@ var BaseUrl = "https://localhost:44301/";//iss
 
 export const Variables = {
     BaseUrl: BaseUrl,
-    GetGroups: BaseUrl + "Group/AllGroups"
+    GetGroups: BaseUrl + "Group/AllGroups",
+    GetGroupByGroupIdUrl: BaseUrl + "Group/GroupDetails?groupid="
+
 };

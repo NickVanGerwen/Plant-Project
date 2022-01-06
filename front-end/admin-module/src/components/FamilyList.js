@@ -26,6 +26,9 @@ function FamilyList() {
         GetFamilies()
     })
 
+    function MoreDetails(id) {
+        document.getElementById("fam" + id).click();
+    }
 
     return (
         families != null ?
@@ -37,14 +40,16 @@ function FamilyList() {
                             <th>name</th>
                             <th>aantal planten</th>
                             <th>aantal gebruikers</th>
+                            {/* <th style={{ Width: "10px" }}></th> */}
                         </tr>
                     </thead>
                     <tbody>
                         {families.map(fam => (
-                            <tr >
-                                <th>{fam.name}</th>
+                            <tr onClick={() => MoreDetails(fam.id)} >
+                                <td>{fam.name}</td>
                                 <th>{fam.plantCount}</th>
                                 <th>{fam.userCount}</th>
+                                {/* <th style={{ Width: "10px" }}>X</th> */}
                                 <Link hidden id={"fam" + fam.id} to={{ pathname: "/GroupInfo", state: { id: fam.id, name: fam.name } }} />
                             </tr>
                         ))}

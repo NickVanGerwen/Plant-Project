@@ -68,5 +68,12 @@ namespace Plant_Project_Backend.Controllers
                 return 500;
             }
         }
+
+        [HttpGet]
+        [Route("AllGroups")]
+        public List<Group> GetGroups()
+        {
+            return context.ReadGroups();
+        }
     }
 }
