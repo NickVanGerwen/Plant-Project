@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class DateCalculator
+    public static  class DateCalculator
     {
-        public DateTime CalcNextWaterDate(DateTime date, int timeInDays)
+        public static DateTime CalcNextWaterDate(DateTime date, int timeInDays)
         {
             return date.AddDays(timeInDays);
         }

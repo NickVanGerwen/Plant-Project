@@ -16,7 +16,7 @@ namespace Plant_Project_Backend
 {
     public class Startup
     {
-        IConfiguration Configuration;
+        readonly IConfiguration Configuration;
 
         public Startup(IConfiguration configuration)
         {
@@ -36,11 +36,6 @@ namespace Plant_Project_Backend
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
 
             app.UseSwagger();
 

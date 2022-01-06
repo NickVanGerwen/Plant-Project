@@ -14,170 +14,105 @@ namespace DBContext
         public DbSet<Group> Groups { get; set; }
         public DbSet<Plant> Plants { get; set; }
         public PlantDBContext(DbContextOptions options) : base(options) { }
-        protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
+    
 
-        DateCalculator DateCalculator = new DateCalculator();
-        
         //group
 
         public void CreateGroup(int userId, string groupName, string groupPassword)
         {
-            try
-            {
-                Groups.Add(
-                    new Group()
+            Groups.Add(
+                new Group()
+                {
+                    Name = groupName,
+                    Password = groupPassword,
+                    Users = new List<User>()
                     {
-                        Name = groupName,
-                        Password = groupPassword,
-                        Users = new List<User>()
-                        {
                             ReadUser(userId)
-                        }
-                    });
-                SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                    }
+                });
+            SaveChanges();
         }
 
         public List<Group> ReadUserGroups(int userid)
         {
-            try
+            User user = Users.Include("Groups").Where(u => u.Id == userid).FirstOrDefault();
+            foreach (Group group in user.Groups)
             {
-                User user = Users.Include("Groups").Where(u => u.Id == userid).FirstOrDefault();
-                foreach (Group group in user.Groups)
-                {
-                    Groups.Include("Users").Include("Plants").Where(g => g.Id == group.Id).FirstOrDefault();
-                    group.UserCount = group.Users.Count();
-                    group.Users = null;
+                Groups.Include("Users").Include("Plants").Where(g => g.Id == group.Id).FirstOrDefault();
+                group.UserCount = group.Users.Count;
+                group.Users = null;
 
-                    group.PlantCount = group.Plants.Count();
-                    group.Plants = null;
-                }
-                return user.Groups;
+                group.PlantCount = group.Plants.Count;
+                group.Plants = null;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            return user.Groups;
         }
 
         public Group ReadGroupDetails(int groupid)
         {
-            try
+            Group group = Groups.Include("Users").Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
+            foreach (User user in group.Users)
             {
-                Group group = Groups.Include("Users").Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
-                foreach (User user in group.Users)
-                {
-                    user.Groups = null;
-                }
-                return group;
+                user.Groups = null;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            return group;
         }
 
         public List<User> ReadGroupUsers(int groupid)
         {
-            try
+            Group group = Groups.Include("Users").Where(g => g.Id == groupid).FirstOrDefault();
+            foreach (User user in group.Users)
             {
-                Group group = Groups.Include("Users").Where(g => g.Id == groupid).FirstOrDefault();
-                foreach (User user in group.Users)
-                {
-                    group.UserCount = group.Users.Count();
-                    user.Groups = null;
-                }
-                return group.Users;
+                group.UserCount = group.Users.Count;
+                user.Groups = null;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            return group.Users;
         }
 
 
         public void AddUserToGroup(int userId, int groupId)
         {
-            try
-            {
-                var entity = Groups.Include("Users").Where(x => x.Id == groupId).FirstOrDefault();
-                entity.Users.Add(ReadUser(userId));
-                SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var entity = Groups.Include("Users").Where(x => x.Id == groupId).FirstOrDefault();
+            entity.Users.Add(ReadUser(userId));
+            SaveChanges();
         }
 
         //User
 
         public void CreateUser(User user)
         {
-            try
-            {
-                Users.Add(user);
-                SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Users.Add(user);
+            SaveChanges();
         }
 
         public User ReadUser(int userid)
         {
-            try
-            {
-                return Users.Where(x => x.Id == userid).FirstOrDefault();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return Users.Where(x => x.Id == userid).FirstOrDefault();
         }
 
         //Plant
 
         public void CreatePlant(string name, string type, int waterInterval, int groupid)
         {
-            try
+            Plant plant = new Plant()
             {
-                Plant plant = new Plant()
-                {
-                    Name = name,
-                    Type = type,
-                    WaterIntervalInDays = waterInterval,
-                    WaterTime = DateCalculator.CalcNextWaterDate(DateTime.Now, waterInterval)
-                };
-                Plants.Add(plant);
-                Group group = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
-                group.Plants.Add(plant);
+                Name = name,
+                Type = type,
+                WaterIntervalInDays = waterInterval,
+                WaterTime = DateCalculator.CalcNextWaterDate(DateTime.Now, waterInterval)
+            };
+            Plants.Add(plant);
+            Group group = Groups.Include("Plants").Where(g => g.Id == groupid).FirstOrDefault();
+            group.Plants.Add(plant);
 
-                SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            SaveChanges();
         }
 
         public void WaterPlant(int plantid)
         {
-            try
-            {
-                var entity = Plants.Where(x => x.Id == plantid).FirstOrDefault();
-                entity.WaterTime = DateCalculator.CalcNextWaterDate(entity.WaterTime,entity.WaterIntervalInDays);
-                SaveChanges();
-            }
-            catch(Exception)
-            {
-                throw;
-            }
+            var entity = Plants.Where(x => x.Id == plantid).FirstOrDefault();
+            entity.WaterTime = DateCalculator.CalcNextWaterDate(entity.WaterTime, entity.WaterIntervalInDays);
+            SaveChanges();
         }
     }
 }
