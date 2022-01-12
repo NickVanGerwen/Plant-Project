@@ -34,7 +34,7 @@ Here's why:
 
 ## Getting Started
 
-This is how to get the project up and running!
+This is how to get the project set up locally!
 
 ### Prerequisites
 
@@ -60,7 +60,7 @@ This is how to get the project up and running!
 - Joining groups
 - Uploading of images to distinguish plants/groups
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/NickVanGerwen/Plant-Project/issues) for a full list of proposed features (and known issues).
 
 ## Contact
 
