@@ -61,9 +61,11 @@ function PlantList({ Group }) {
         if (plantdate.substr(0, 4) < today.getFullYear()) {
             return true
         }
+        // eslint-disable-next-line
         if (plantdate.substr(0, 4) == today.getFullYear() && plantdate.substr(5, 2) < month) {
             return true;
         }
+        // eslint-disable-next-line
         if (plantdate.substr(0, 4) == today.getFullYear() && plantdate.substr(5, 2) == month && plantdate.substr(8, 2) <= today.getDate()) {
             return true;
         }
@@ -97,11 +99,7 @@ function PlantList({ Group }) {
                     {plantarray.map(plant => (
                         <tr id="troverride" data-testid="plantlist" onMouseEnter={() => IconEnter(plant.id)} onMouseLeave={() => IconLeave(plant.id, plant.waterTime)}>
                             <td style={{ width: "25%" }}>
-
                                 {IsExpired(plant.waterTime) ? <img title="markeer als bewatert" id={"watercan" + plant.id} alt="water" src={warning} style={{ cursor: "pointer", width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} /> : <img title="markeer als bewatert" id={"watercan" + plant.id} alt="water" src={wateringcan} style={{ cursor: "pointer", width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} />}
-
-
-
                                 {plant.waterTime.substr(0, 10)}
                             </td>
                             <td data-testid={"plant" + plant.id} style={{ width: "25%" }}>{plant.name}</td>
