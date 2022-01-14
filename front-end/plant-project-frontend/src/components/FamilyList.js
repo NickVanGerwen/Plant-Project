@@ -45,9 +45,9 @@ function FamilyList() {
                     <tbody>
                         {families.map(fam => (
                             <tr onClick={() => MoreDetails(fam.id)}>
-                                <th>{fam.name}</th>
-                                <th>{fam.plantCount}</th>
-                                <th>{fam.userCount}</th>
+                                <td>{fam.name}</td>
+                                <td>{fam.plantCount}</td>
+                                <td>{fam.userCount}</td>
                                 <Link hidden id={"fam" + fam.id} to={{ pathname: "/GroupInfo", state: { id: fam.id, name: fam.name } }} />
                             </tr>
                         ))}

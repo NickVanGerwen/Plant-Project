@@ -5,7 +5,7 @@ services:
     image: plant
     build:
       context: back-end/Plant-Project-Backend
-      dockerfile: Plant-Project-Backend/Dockerfile
+      dockerfile: Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:5000
     ports:

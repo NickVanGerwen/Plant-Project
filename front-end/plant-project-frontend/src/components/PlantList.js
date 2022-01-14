@@ -3,7 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Variables } from '../components/APIURLs';
-import wateringcan from '../wateringcan.ico'
+import wateringcan from '../wateringcan.ico';
+import wateringcanblue from "../wateringcanblue.ico";
+import warning from "../warning.ico";
 
 function PlantList({ Group }) {
     const [createPlantActive, setcreatePlantActive] = useState(false);
@@ -24,14 +26,49 @@ function PlantList({ Group }) {
         var name = document.getElementById("plantname").value;
         var type = document.getElementById("planttype").value;
         var waterinterval = document.getElementById("plantwaterinterval").value;
-        if (name === "" || type === "" || waterinterval === 0) {
+        if (name === "" || type === "") {
             alert("vul alle velden in");
-        } else {
+        } else if (waterinterval <= 0) {
+            alert("aantal dagen moet 1 of hoger zijn")
+        }
+        else {
             axios.put(Variables.PutNewPlant + "name=" + name + "&type=" + type + "&waterIntervalinDays=" + waterinterval + "&groupid=" + Group.id)
             window.location.reload(false);
         }
     }
 
+    function IconEnter(plantid) {
+        document.getElementById("watercan" + plantid).src = wateringcanblue
+    }
+    function IconLeave(plantid, plantdate) {
+
+        if (IsExpired(plantdate)) {
+            document.getElementById("watercan" + plantid).src = warning
+        }
+        else {
+            document.getElementById("watercan" + plantid).src = wateringcan
+
+        }
+    }
+
+    function IsExpired(plantdate) {
+        const today = new Date();
+        let month = today.getMonth();
+        month++;
+        if (month < 10) {
+            month = '0' + month
+        }
+        if (plantdate.substr(0, 4) < today.getFullYear()) {
+            return true
+        }
+        if (plantdate.substr(0, 4) == today.getFullYear() && plantdate.substr(5, 2) < month) {
+            return true;
+        }
+        if (plantdate.substr(0, 4) == today.getFullYear() && plantdate.substr(5, 2) == month && plantdate.substr(8, 2) <= today.getDate()) {
+            return true;
+        }
+        return false;
+    }
 
     function WaterPlant(plantid) {
         try {
@@ -58,8 +95,15 @@ function PlantList({ Group }) {
                 </thead>
                 <tbody>
                     {plantarray.map(plant => (
-                        <tr data-testid="plantlist">
-                            <td style={{ width: "25%" }}> <img alt="water" src={wateringcan} style={{ width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} />{plant.waterTime.substr(0, 10)}</td>
+                        <tr id="troverride" data-testid="plantlist" onMouseEnter={() => IconEnter(plant.id)} onMouseLeave={() => IconLeave(plant.id, plant.waterTime)}>
+                            <td style={{ width: "25%" }}>
+
+                                {IsExpired(plant.waterTime) ? <img title="markeer als bewatert" id={"watercan" + plant.id} alt="water" src={warning} style={{ cursor: "pointer", width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} /> : <img title="markeer als bewatert" id={"watercan" + plant.id} alt="water" src={wateringcan} style={{ cursor: "pointer", width: "25px", marginRight: "10%" }} variant="secondary" onClick={() => WaterPlant(plant.id)} />}
+
+
+
+                                {plant.waterTime.substr(0, 10)}
+                            </td>
                             <td data-testid={"plant" + plant.id} style={{ width: "25%" }}>{plant.name}</td>
                             <td style={{ width: "25%" }}>{plant.type}</td>
                             {plant.waterIntervalInDays <= 2 ? <td style={{ width: "25%" }}>elke dag</td> : <td style={{ width: "25%" }}>elke {plant.waterIntervalInDays} dagen</td>}

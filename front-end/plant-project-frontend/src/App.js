@@ -12,6 +12,7 @@ function App() {
         <Switch>
           <Route path='/GroupInfo' exact component={GroupInfoPage} />
           <Route path='/Families' exact component={FamiliesPage} />
+          <Route path='/' exact component={FamiliesPage} />
         </Switch>
       </Router>
     </div>

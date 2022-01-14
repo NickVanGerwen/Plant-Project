@@ -16,8 +16,8 @@ function UserList({ Group }) {
             </thead>
             <tbody>
                 {userarray.map(user => (
-                    <tr>
-                        <th>{user.name}</th>
+                    <tr id="troverride">
+                        <td>{user.name}</td>
                     </tr>
                 ))}
             </tbody>
